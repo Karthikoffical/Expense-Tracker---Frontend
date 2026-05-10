@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Expense - Personal Expense Tracker</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">Expense Tracker</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="add-expense.html">Add Expense</a></li>
+                    <li class="nav-item"><a class="nav-link" href="history.html">History</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                    <li class="nav-item nav-auth-public"><a class="nav-link" href="login.html">Login</a></li>
+                    <li class="nav-item nav-auth-public"><a class="nav-link" href="register.html">Register</a></li>
+                    <li class="nav-item nav-auth-private d-none"><a class="nav-link" href="#" onclick="logoutUser()">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-5 mt-5">
+        <section class="section py-5">
+            <div class="container">
+                <div class="row gx-4 gy-4 align-items-center">
+                    <div class="col-lg-6">
+                        <div class="p-4 rounded-4 shadow-sm bg-white">
+                            <h2 class="fw-bold">Add a new expense</h2>
+                            <p class="text-muted">Enter expense details to keep your spending organized and up to date.</p>
+                            <form id="expenseForm" class="mt-4 needs-validation" novalidate>
+                                <div class="mb-3">
+                                    <label for="expenseTitle" class="form-label">Expense Title</label>
+                                    <input type="text" class="form-control custom-input" id="expenseTitle" placeholder="e.g. Grocery shopping" required>
+                                    <div class="invalid-feedback">Please enter a title for the expense.</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="expenseAmount" class="form-label">Amount</label>
+                                    <input type="number" min="0" step="0.01" class="form-control custom-input" id="expenseAmount" placeholder="₹0.00" required>
+                                    <div class="invalid-feedback">Please enter a valid amount.</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="expenseCategory" class="form-label">Category</label>
+                                    <select class="form-select custom-input" id="expenseCategory" required>
+                                        <option value="">Choose category</option>
+                                        <option>Food</option>
+                                        <option>Travel</option>
+                                        <option>Bills</option>
+                                        <option>Shopping</option>
+                                        <option>Health</option>
+                                        <option>Other</option>
+                                    </select>
+                                    <div class="invalid-feedback">Please select a category.</div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="expenseDate" class="form-label">Date</label>
+                                    <input type="date" class="form-control custom-input" id="expenseDate" required>
+                                    <div class="invalid-feedback">Please choose a date for the expense.</div>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="expenseNotes" class="form-label">Notes</label>
+                                    <textarea class="form-control custom-input" id="expenseNotes" rows="4" placeholder="Add extra details..."></textarea>
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-lg w-100"><i class="fa-solid fa-paper-plane me-2"></i>Submit Expense</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="p-4 rounded-4 shadow-sm bg-white h-100">
+                            <h2 class="fw-bold">Quick Expense Summary</h2>
+                            <p class="text-muted">Use this form to log your spending immediately and keep your budget tracking accurate.</p>
+                            <div class="row g-3 mt-3">
+                                <div class="col-6">
+                                    <div class="p-3 rounded-4 bg-light">
+                                        <p class="text-uppercase small text-muted mb-1">Recent Category</p>
+                                        <h4 class="mb-0">Food</h4>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="p-3 rounded-4 bg-light">
+                                        <p class="text-uppercase small text-muted mb-1">Fast Entry</p>
+                                        <h4 class="mb-0">Choose & save</h4>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="p-3 rounded-4 bg-light">
+                                        <p class="text-uppercase small text-muted mb-1">Stay Organized</p>
+                                        <h4 class="mb-0">All expenses in one place</h4>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="p-3 rounded-4 bg-light">
+                                        <p class="text-uppercase small text-muted mb-1">Responsive</p>
+                                        <h4 class="mb-0">Mobile friendly</h4>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 p-3 rounded-4 bg-primary text-white">
+                                <h5 class="fw-bold">Need help?</h5>
+                                <p class="mb-0">Fill in all fields and submit. The tracker will ready your expense history automatically.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer py-4 bg-primary text-white mt-4">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <p class="mb-2 mb-md-0">© 2026 Personal Expense Tracker</p>
+            <div>
+                <a href="#" class="text-white me-3"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="text-white me-3"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="text-white"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

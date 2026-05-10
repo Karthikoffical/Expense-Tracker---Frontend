@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Expense Tracker</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">Expense Tracker</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="add-expense.html">Add Expense</a></li>
+                    <li class="nav-item"><a class="nav-link" href="history.html">History</a></li>
+                    <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+                    <li class="nav-item nav-auth-public"><a class="nav-link" href="login.html">Login</a></li>
+                    <li class="nav-item nav-auth-public"><a class="nav-link" href="register.html">Register</a></li>
+                    <li class="nav-item nav-auth-private d-none"><a class="nav-link" href="#" onclick="logoutUser()">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section d-flex align-items-center text-white">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <span class="badge bg-light text-primary mb-3">Personal Expense Tracker</span>
+                    <h1 class="display-5 fw-bold">Track your spending smarter, save more confidently.</h1>
+                    <p class="lead text-light opacity-75">Manage your daily expenses, analyze monthly trends, and stay in control with a clean expense tracking dashboard.</p>
+                    <a href="add-expense.html" class="btn btn-light btn-lg me-2"><i class="fa-solid fa-plus-circle me-2"></i>Add Expense</a>
+                    <a href="dashboard.html" class="btn btn-outline-light btn-lg"><i class="fa-solid fa-chart-line me-2"></i>View Dashboard</a>
+                </div>
+                <div class="col-lg-5 text-center mt-4 mt-lg-0">
+                    <div class="hero-card p-4 rounded-4 shadow-lg bg-white text-dark">
+                        <h5 class="fw-bold">Monthly Snapshot</h5>
+                        <div class="d-flex justify-content-between mt-3">
+                            <div>
+                                <p class="text-muted mb-1">Total Spent</p>
+                                <h3 id="homeMonthlySpent">₹0</h3>
+                            </div>
+                            <div>
+                                <p class="text-muted mb-1">Remaining</p>
+                                <h3 id="homeRemaining">₹0</h3>
+                            </div>
+                        </div>
+                        <div class="progress mt-3" style="height: 8px;">
+                            <div class="progress-bar bg-primary" id="homeProgressBar" style="width: 0%;"></div>
+                        </div>
+                        <p class="small text-muted mt-2" id="homeProgressText">0% of budget used</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section class="features-section py-5">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">Smart Features</h2>
+                <p class="text-muted mx-auto" style="max-width: 680px;">A modern expense tracker built to simplify budgeting, categorize spending, and review your financial health all in one place.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card p-4 rounded-4 shadow-sm h-100 bg-white">
+                        <div class="icon-wrap mb-3 text-primary"><i class="fa-solid fa-wallet fa-2x"></i></div>
+                        <h5 class="fw-bold">Expense Logging</h5>
+                        <p class="text-muted">Quickly add expenses with category, amount, date and notes.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card p-4 rounded-4 shadow-sm h-100 bg-white">
+                        <div class="icon-wrap mb-3 text-primary"><i class="fa-solid fa-table-list fa-2x"></i></div>
+                        <h5 class="fw-bold">History Tracker</h5>
+                        <p class="text-muted">View expense history with filters, search, edit and delete actions.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card p-4 rounded-4 shadow-sm h-100 bg-white">
+                        <div class="icon-wrap mb-3 text-primary"><i class="fa-solid fa-chart-pie fa-2x"></i></div>
+                        <h5 class="fw-bold">Analytics Dashboard</h5>
+                        <p class="text-muted">Track monthly totals, budgets and spending categories at a glance.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="feature-card p-4 rounded-4 shadow-sm h-100 bg-white">
+                        <div class="icon-wrap mb-3 text-primary"><i class="fa-solid fa-mobile-screen-button fa-2x"></i></div>
+                        <h5 class="fw-bold">Responsive Design</h5>
+                        <p class="text-muted">Use the tracker on any device with a polished mobile-ready layout.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section py-5 bg-light">
+        <div class="container text-center">
+            <h3 class="fw-bold">Ready to take control of your expenses?</h3>
+            <p class="text-muted mb-4">Start adding your daily expenses and watch your budget become easier to manage.</p>
+            <a href="add-expense.html" class="btn btn-primary btn-lg"><i class="fa-solid fa-play me-2"></i>Start Tracking</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer py-4 bg-primary text-white">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <p class="mb-2 mb-md-0">© 2026 Personal Expense Tracker</p>
+            <div>
+                <a href="#" class="text-white me-3"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="text-white me-3"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="text-white"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

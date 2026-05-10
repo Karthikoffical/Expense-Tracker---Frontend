@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Personal Expense Tracker</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="d-lg-flex min-vh-100 bg-light">
+        <aside class="dashboard-sidebar bg-white p-4 shadow-sm d-none d-lg-block" style="width: 280px;">
+            <div class="mb-5 text-center">
+                <h4 class="fw-bold">Expense Dashboard</h4>
+                <p class="text-muted mb-0">Analytics & budget overview</p>
+            </div>
+            <nav class="nav flex-column gap-3">
+                <a class="nav-link text-dark fw-semibold" href="index.html"><i class="fa-solid fa-house me-2"></i>Home</a>
+                <a class="nav-link text-dark fw-semibold" href="add-expense.html"><i class="fa-solid fa-plus me-2"></i>Add Expense</a>
+                <a class="nav-link text-dark fw-semibold" href="history.html"><i class="fa-solid fa-clock-rotate-left me-2"></i>History</a>
+                <a class="nav-link text-dark fw-semibold active" href="dashboard.html"><i class="fa-solid fa-chart-pie me-2"></i>Dashboard</a>
+                <a class="nav-link nav-auth-public text-dark fw-semibold d-none" href="login.html"><i class="fa-solid fa-right-to-bracket me-2"></i>Login</a>
+                <a class="nav-link nav-auth-public text-dark fw-semibold d-none" href="register.html"><i class="fa-solid fa-user-plus me-2"></i>Register</a>
+                <a class="nav-link nav-auth-private text-dark fw-semibold d-none" href="#" onclick="logoutUser()"><i class="fa-solid fa-right-from-bracket me-2"></i>Logout</a>
+            </nav>
+        </aside>
+
+        <main class="flex-grow-1">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm d-lg-none">
+                <div class="container-fluid">
+                    <a class="navbar-brand fw-bold" href="dashboard.html">Dashboard</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="mobileNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="add-expense.html">Add Expense</a></li>
+                            <li class="nav-item"><a class="nav-link" href="history.html">History</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="dashboard.html">Dashboard</a></li>
+                            <li class="nav-item nav-auth-public"><a class="nav-link" href="login.html">Login</a></li>
+                            <li class="nav-item nav-auth-public"><a class="nav-link" href="register.html">Register</a></li>
+                            <li class="nav-item nav-auth-private d-none"><a class="nav-link" href="#" onclick="logoutUser()">Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <section class="section py-5">
+                <div class="container-fluid px-4">
+                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start gap-3 mb-4">
+                        <div>
+                            <h2 class="fw-bold">Dashboard Analytics</h2>
+                            <p class="text-muted">Monitor total spend, monthly performance, budget usage, and category trends.</p>
+                        </div>
+                        <div class="btn-group">
+                            <button class="btn btn-outline-primary">This Month</button>
+                            <button class="btn btn-outline-primary">Last 30 Days</button>
+                        </div>
+                    </div>
+
+                    <div class="row g-4">
+                        <div class="col-sm-6 col-xl-3">
+                            <div class="dashboard-card p-4 shadow-sm h-100 bg-white">
+                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                    <div>
+                                        <h6 class="text-uppercase text-muted mb-2">Total Expenses</h6>
+                                        <h3 class="fw-bold" id="totalExpensesValue">₹0</h3>
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill p-2"><i class="fa-solid fa-wallet"></i></span>
+                                </div>
+                                <p class="text-muted mb-0">Total spending tracked so far.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xl-3">
+                            <div class="dashboard-card p-4 shadow-sm h-100 bg-white">
+                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                    <div>
+                                        <h6 class="text-uppercase text-muted mb-2">Monthly Expense</h6>
+                                        <h3 class="fw-bold" id="monthlyExpenseValue">₹0</h3>
+                                    </div>
+                                    <span class="badge bg-success rounded-pill p-2"><i class="fa-solid fa-calendar-days"></i></span>
+                                </div>
+                                <p class="text-muted mb-0">This month’s expense total.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xl-3">
+                            <div class="dashboard-card p-4 shadow-sm h-100 bg-white">
+                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                    <div>
+                                        <h6 class="text-uppercase text-muted mb-2">Monthly Budget</h6>
+                                        <h3 class="fw-bold" id="budgetValueDisplay">₹0</h3>
+                                    </div>
+                                    <span class="badge bg-dark rounded-pill p-2"><i class="fa-solid fa-sack-dollar"></i></span>
+                                </div>
+                                <div class="input-group mt-3">
+                                    <span class="input-group-text bg-light">₹</span>
+                                    <input type="number" min="0" class="form-control custom-input" id="monthlyBudgetInput" placeholder="Set budget">
+                                    <button class="btn btn-primary" id="saveBudgetBtn">Save</button>
+                                </div>
+                                <p class="text-muted small mt-3">Set your budget to track how much remains as expenses grow.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-xl-3">
+                            <div class="dashboard-card p-4 shadow-sm h-100 bg-white">
+                                <div class="d-flex align-items-center justify-content-between mb-3">
+                                    <div>
+                                        <h6 class="text-uppercase text-muted mb-2">Remaining Budget</h6>
+                                        <h3 class="fw-bold" id="remainingBudgetValue">₹0</h3>
+                                    </div>
+                                    <span class="badge bg-info rounded-pill p-2"><i class="fa-solid fa-hand-holding-dollar"></i></span>
+                                </div>
+                                <p class="text-muted mb-0">Budget left for the current month.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-4 mt-3">
+                        <div class="col-lg-6">
+                            <div class="dashboard-card p-4 shadow-sm bg-white">
+                                <div class="d-flex align-items-center justify-content-between mb-4">
+                                    <div>
+                                        <h5 class="fw-bold mb-1">Expense Breakdown</h5>
+                                        <p class="text-muted mb-0">View the category distribution.</p>
+                                    </div>
+                                    <span class="badge bg-primary rounded-pill py-2 px-3">Pie chart</span>
+                                </div>
+                                <div class="chart-placeholder">
+                                    <div class="text-center">
+                                        <i class="fa-solid fa-chart-pie fa-2x mb-3"></i>
+                                        <p class="mb-0">Pie Chart Placeholder</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="dashboard-card p-4 shadow-sm bg-white">
+                                <div class="d-flex align-items-center justify-content-between mb-4">
+                                    <div>
+                                        <h5 class="fw-bold mb-1">Monthly Trends</h5>
+                                        <p class="text-muted mb-0">Compare expense totals across weeks.</p>
+                                    </div>
+                                    <span class="badge bg-success rounded-pill py-2 px-3">Bar chart</span>
+                                </div>
+                                <div class="chart-placeholder">
+                                    <div class="text-center">
+                                        <i class="fa-solid fa-chart-column fa-2x mb-3"></i>
+                                        <p class="mb-0">Bar Chart Placeholder</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row g-4 mt-3">
+                        <div class="col-lg-4">
+                            <div class="dashboard-card p-4 bg-white shadow-sm">
+                                <h6 class="text-uppercase text-muted mb-3">Budget Status</h6>
+                                <div class="progress mb-3" style="height: 10px;">
+                                    <div class="progress-bar bg-primary" id="budgetProgressBar" style="width: 0%;"></div>
+                                </div>
+                                <p class="mb-0 text-muted" id="budgetStatusText">No budget set yet.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="dashboard-card p-4 bg-white shadow-sm">
+                                <h6 class="text-uppercase text-muted mb-3">Top Expense Category</h6>
+                                <p class="fw-bold mb-1" id="topCategoryName">—</p>
+                                <p class="text-muted mb-0" id="topCategoryAmount">No expenses recorded.</p>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="dashboard-card p-4 bg-white shadow-sm">
+                                <h6 class="text-uppercase text-muted mb-3">Quick Stats</h6>
+                                <ul class="list-unstyled mb-0">
+                                    <li class="mb-2"><span class="d-block fw-semibold">Expenses This Month</span><small class="text-muted" id="statsExpensesCount">0 transactions</small></li>
+                                    <li><span class="d-block fw-semibold">Avg. Transaction</span><small class="text-muted" id="statsAvgAmount">₹0</small></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="footer py-4 bg-primary text-white">
+        <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <p class="mb-2 mb-md-0">© 2026 Personal Expense Tracker</p>
+            <div>
+                <a href="#" class="text-white me-3"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="text-white me-3"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="text-white"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
