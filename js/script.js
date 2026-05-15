@@ -1,4 +1,4 @@
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = 'https://expense-tracker-backend-fzm1.onrender.com/api';
 
 // Protect route - redirect to login if not authenticated
 if (!isUserLoggedIn() && !window.location.pathname.includes('login.html') && !window.location.pathname.includes('register.html') && !window.location.pathname.includes('index.html')) {
